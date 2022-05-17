@@ -34,14 +34,18 @@ span {
 .slidev-layout td,
 .slidev-layout th,
 .slidev-layout tr {
-  @apply items-center text-xs p-4 border-b-1 border-gray-800;
+  @apply items-center text-xs p-4 border-b-1 border-slate-700;
+}
+
+.slidev-layout th {
+  @apply font-bold;
 }
 
 table {
-  @apply my-4 relative;
+  @apply my-4 relative bg-slate-800 rounded-lg;
 }
 
 table::before {
-  @apply border border-gray-800 rounded-lg absolute w-full h-full top-0;
+  @apply border border-slate-700 rounded-lg absolute w-full h-full top-0;
   content: "";
 }
