@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap");
+
+* {
+  @apply text-slate-100;
+}
+
+h1 {
+  font-family: "Arvo", serif;
+  font-weight: 700;
+}
+
+h2 {
+  @apply border-b border-sky-400 pb-3;
+  font-family: "Arvo", serif;
+  font-weight: 700;
+}
+
+p {
+  @apply text-justify text-slate-200;
+}
+
+.slidev-layout {
+  @apply bg-slate-900 px-30 py-20;
+}
+
+.cover {
+  @apply flex justify-center items-center;
+}
+
+.slidev-layout span {
+  @apply text-lg text-pink-400;
+}
+
+.slidev-layout h3 {
+  @apply text-base inline;
+}
+
+.slidev-layout td,
+.slidev-layout th,
+.slidev-layout tr {
+  @apply items-center text-sm p-2 border-slate-700;
+}
+
+.slidev-layout th {
+  @apply font-bold border-b-1;
+}
+
+.slidev-layout tr {
+  @apply border-b-1 last-of-type:border-b-0;
+}
+
+.slidev-layout thead tr:first-child {
+  @apply rounded-t-md;
+}
+
+.slidev-layout tr td:first-child,
+.slidev-layout tr th:first-child {
+  @apply text-center;
+}
+
+table {
+  @apply my-4 relative bg-slate-800/50 rounded-md;
+}
+
+table::before {
+  @apply border border-slate-700 rounded-md absolute w-full h-full top-0;
+  content: "";
+}
+
+.slidev-layout ul,
+.slidev-layout ol {
+  @apply mt-8;
+}
+.slidev-layout ol {
+  counter-reset: orderedlist;
+}
+
+.slidev-layout li {
+  @apply list-none m-0 p-0;
+  display: grid;
+  grid-template-columns: 0 1fr;
+  gap: 1.75em;
+}
+
+.slidev-layout ul li::before {
+  @apply text-pink-400 font-bold;
+  content: "•";
+}
+
+.slidev-layout ol li::before {
+  @apply text-pink-400 font-bold;
+  counter-increment: orderedlist;
+  content: counter(orderedlist) ".";
+}
