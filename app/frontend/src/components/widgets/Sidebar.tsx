@@ -4,8 +4,8 @@ import SidebarButton from "./SidebarButton";
 
 export default function Sidebar() {
   return (
-    <nav className="flex flex-1 flex-col items-end h-full">
-      <ul>
+    <nav className="flex flex-col items-end h-full w-full">
+      <ul className="w-full">
         <li>
           <SidebarButton
             label="today"

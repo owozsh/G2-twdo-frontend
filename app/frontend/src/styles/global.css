@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  @apply dark:text-slate-200;
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  @apply bg-slate-100 dark:bg-slate-900;
+  height: 100vh;
+}
+
+#root {
+  @apply h-full;
+}
+
+.clickable {
+  @apply rounded-md cursor-default outline outline-0 outline-transparent;
+
+  border: 1px solid transparent;
+
+  transition: background 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+    padding 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+    border 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+    outline 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+    height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.clickable:not(.edit-mode) {
+  @apply hover:bg-blue-400/10 hover:outline-1 hover:outline-blue-400/30 active:bg-blue-400/20;
+
+  @apply dark:hover:bg-pink-400/10 dark:hover:outline-pink-400/30 dark:active:bg-pink-400/20;
+}
+
+.task-container {
+  @apply flex flex-col relative items-center justify-start w-full h-8 mb-1 px-2 py-1;
+
+  cursor: default;
+}
+
+.task-container.edit-mode {
+  @apply h-16 z-20 border border-solid border-slate-300/50 items-stretch shadow-lg shadow-slate-200 px-3 py-2;
+  @apply dark:border-slate-400/10 dark:shadow-slate-800/10 dark:bg-slate-800/20;
+
+  transform: none;
+}
+
+.task-container input {
+  font-size: 1rem;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+
+  cursor: default;
+}
+
+.task-container.edit-mode input {
+  cursor: text;
+}
+
+.task-container input:focus {
+  outline: none;
+  border: none;
+}
