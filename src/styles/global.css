@@ -71,8 +71,8 @@ body {
 
 .checkbox {
   @apply w-3 h-3 flex relative items-center justify-center rounded-[0.25rem] border mr-2;
-  @apply border-slate-800;
-  @apply dark:border-slate-300;
+  @apply border-slate-400;
+  @apply dark:border-slate-600;
 
   transition: transform var(--transition-props-fast),
     opacity var(--transition-props-fast);
@@ -92,13 +92,17 @@ body {
 }
 
 .checkbox svg {
-  @apply min-w-[1rem] hidden;
-  stroke-width: 2px;
-  transform: translate(-0.55rem, -0.05rem);
+  @apply min-w-[1rem] hidden w-full h-full;
+  stroke-width: 4px;
+  transform: translateX(-65%);
+}
+
+.checkbox.checked {
+  @apply dark:bg-pink-400 dark:border-pink-400 bg-blue-400 border-blue-400;
 }
 
 .checkbox.checked svg {
-  @apply block;
+  @apply block dark:stroke-slate-900 stroke-slate-100;
 }
 
 input {
