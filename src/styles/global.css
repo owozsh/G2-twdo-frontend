@@ -5,6 +5,7 @@
 :root {
   --transition-props-slow: 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
   --transition-props-fast: 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  font-size: 16px;
 }
 
 * {

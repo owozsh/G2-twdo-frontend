@@ -44,8 +44,6 @@ export default function Task(props: { description: string }) {
           <Check />
         </div>
         <input
-          onPointerDown={(e) => !editMode && e.preventDefault()}
-          onClick={(e) => !editMode && e.preventDefault()}
           disabled={!editMode}
           value={description}
           ref={inputElement}
