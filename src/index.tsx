@@ -1,13 +1,18 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./pages";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
+import Today from "./pages/today";
+
 import "./styles/global.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Navigate to="today" replace />} />
+      <Route path="today" element={<Today />} />
+    </Routes>
+  </BrowserRouter>
 );

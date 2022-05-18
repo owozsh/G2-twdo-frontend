@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --transition-props-slow: 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --transition-props-fast: 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
 * {
   @apply dark:text-slate-200;
   font-family: "Nunito", sans-serif;
@@ -21,28 +26,26 @@ body {
 
   border: 1px solid transparent;
 
-  transition: background 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
-    padding 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
-    border 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
-    outline 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
-    transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
-    height 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background var(--transition-props-slow),
+    padding var(--transition-props-fast), border var(--transition-props-slow),
+    outline var(--transition-props-slow), transform var(--transition-props-fast),
+    height var(--transition-props-fast);
 }
 
 .clickable:not(.edit-mode) {
-  @apply hover:bg-blue-400/10 hover:outline-1 hover:outline-blue-400/30 active:bg-blue-400/20;
+  @apply hover:bg-blue-400/10 hover:outline-1 hover:outline-blue-400/30 active:bg-blue-400/20 active:scale-[0.98];
 
   @apply dark:hover:bg-pink-400/10 dark:hover:outline-pink-400/30 dark:active:bg-pink-400/20;
 }
 
 .task-container {
-  @apply flex flex-col relative items-center justify-start w-full h-8 mb-1 px-2 py-1;
+  @apply flex relative items-center justify-start w-full h-8 mb-1 px-2 py-1;
 
   cursor: default;
 }
 
 .task-container.edit-mode {
-  @apply h-16 z-20 border border-solid border-slate-300/50 items-stretch shadow-lg shadow-slate-200 px-3 py-2;
+  @apply flex-col h-16 z-20 border border-solid border-slate-300/50 items-stretch shadow-lg shadow-slate-200 px-3 py-2;
   @apply dark:border-slate-400/10 dark:shadow-slate-800/10 dark:bg-slate-800/20;
 
   transform: none;
@@ -64,4 +67,40 @@ body {
 .task-container input:focus {
   outline: none;
   border: none;
+}
+
+.checkbox {
+  @apply w-3 h-3 flex relative items-center justify-center rounded-[0.25rem] border mr-2;
+  @apply border-slate-800;
+  @apply dark:border-slate-300;
+
+  transition: transform var(--transition-props-fast),
+    opacity var(--transition-props-fast);
+}
+
+.checkbox::before {
+  display: block;
+
+  content: "";
+  display: block;
+  border: 0.7rem solid transparent;
+  transform: translate(-0.3rem, -0.3rem);
+}
+
+.checkbox.edit-mode {
+  @apply hidden;
+}
+
+.checkbox svg {
+  @apply min-w-[1rem] hidden;
+  stroke-width: 2px;
+  transform: translate(-0.55rem, -0.05rem);
+}
+
+.checkbox.checked svg {
+  @apply block;
+}
+
+input {
+  z-index: -10;
 }

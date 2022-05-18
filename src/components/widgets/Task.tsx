@@ -30,19 +30,22 @@ export default function Task(props: { description: string }) {
   }, [editMode]);
 
   return (
-    <>
+    <li>
       <div
         className={`task-container clickable ${editMode && "edit-mode"}`}
         onClick={() => setEditMode(true)}
       >
-        {/* <Checkbox
-          editMode={editMode}
-          isComplete={isComplete}
+        <div
+          className={`checkbox ${editMode && "edit-mode"} ${
+            isComplete && "checked"
+          }`}
           onClick={(e) => toggleIsComplete(e)}
         >
           <Check />
-        </Checkbox> */}
+        </div>
         <input
+          onPointerDown={(e) => !editMode && e.preventDefault()}
+          onClick={(e) => !editMode && e.preventDefault()}
           disabled={!editMode}
           value={description}
           ref={inputElement}
@@ -71,7 +74,7 @@ export default function Task(props: { description: string }) {
       ) : (
         ""
       )}
-    </>
+    </li>
   );
 }
 
@@ -82,18 +85,6 @@ export default function Task(props: { description: string }) {
 // `;
 
 // const Checkbox = styled.div`
-//   width: 0.8rem;
-//   height: 0.8rem;
-
-//   display: ${(props: { isComplete: boolean; editMode: boolean }) =>
-//     props.editMode ? "none" : "flex"};
-
-//   position: relative;
-//   align-items: center;
-//   justify-content: center;
-
-//   border-radius: 5px;
-//   border: 1px solid #000;
 //   margin-right: 0.5rem;
 
 //   transition: transform 0.1s cubic-bezier(0.165, 0.84, 0.44, 1),
