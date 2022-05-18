@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Trash2, Calendar, Check } from "react-feather";
+import { Check } from "react-feather";
 
 export default function Task(props: { description: string }) {
   const [isComplete, setIsComplete] = useState(false);
@@ -18,7 +18,7 @@ export default function Task(props: { description: string }) {
       if (e.key === "Escape" || e.key === "Enter") setEditMode(false);
     });
 
-    if (description == "") {
+    if (description === "") {
       setEditMode(true);
     }
   }, [description]);
