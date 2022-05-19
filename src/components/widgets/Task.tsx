@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Check } from "react-feather";
+import Clickable from "../ui/Clickable";
 
 export default function Task(props: { description: string }) {
   const [isComplete, setIsComplete] = useState(false);
@@ -31,8 +32,9 @@ export default function Task(props: { description: string }) {
 
   return (
     <li>
-      <div
-        className={`task-container clickable ${editMode && "edit-mode"}`}
+      <Clickable
+        className={`task-container ${editMode && "edit-mode"}`}
+        hoverDisabled={editMode}
         onClick={() => setEditMode(true)}
       >
         <div
@@ -63,7 +65,7 @@ export default function Task(props: { description: string }) {
             <Trash2 />
           </Button>
         </ActionMenu> */}
-      </div>
+      </Clickable>
       {editMode ? (
         <div
           className="absolute z-10 top-0 left-0 h-screen w-screen"

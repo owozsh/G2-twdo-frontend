@@ -1,6 +1,9 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 
+import Clickable from "../ui/Clickable";
+import Icon from "../ui/Icon";
+
 export default function SidebarButton({
   label,
   icon,
@@ -11,12 +14,11 @@ export default function SidebarButton({
   route: string;
 }) {
   return (
-    <Link
-      to={`${route}`}
-      className="w-full flex items-center mb-1 px-2 py-1 clickable"
-    >
-      <span className="flex items-center mr-3 child-icon:w-4">{icon}</span>
-      <p className="font-bold">{label.toLowerCase()}</p>
+    <Link to={`${route}`}>
+      <Clickable className="w-full mb-1">
+        <Icon icon={icon} size={4} />
+        <p className="font-bold">{label.toLowerCase()}</p>
+      </Clickable>
     </Link>
   );
 }

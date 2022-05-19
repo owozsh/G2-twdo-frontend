@@ -11,6 +11,9 @@ module.exports = {
       maxWidth: {
         sidebar: "200px",
       },
+      transitionProperty: {
+        clickable: "background padding border outline transform height",
+      },
     },
   },
   plugins: [

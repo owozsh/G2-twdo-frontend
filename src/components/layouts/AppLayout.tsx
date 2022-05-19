@@ -7,6 +7,7 @@ import HeaderBar from "../widgets/HeaderBar";
 import Sidebar from "../widgets/Sidebar";
 import TaskView from "../widgets/TaskView";
 import Task from "../widgets/Task";
+import Clickable from "../ui/Clickable";
 
 export default function AppLayout(props: { title: string; tasks: task[] }) {
   const [tasks, setTasks] = useState(props.tasks);
