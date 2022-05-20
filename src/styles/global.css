@@ -11,6 +11,7 @@
 * {
   @apply dark:text-slate-200;
   font-family: "Nunito", sans-serif;
+  list-style: none;
 }
 
 body {
@@ -85,4 +86,8 @@ body {
 
 input {
   z-index: -10;
+}
+
+#data-rbd-drag-handle-context-id {
+  cursor: default;
 }

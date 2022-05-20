@@ -1,5 +1,6 @@
 import { Plus } from "react-feather";
-import Clickable from "../ui/Clickable";
+import Clickable from "../common/Clickable";
+import Icon from "../common/Icon";
 
 export default function HeaderBar({
   title,
@@ -12,11 +13,11 @@ export default function HeaderBar({
     <header className="flex items-center justify-between w-full row-span-1 col-span-3 place-self-center">
       <h1 className="text-3xl font-semibold">{title.toUpperCase()}</h1>
       <Clickable
-        className="w-8 h-8 border-none justify-center items-center child-icon:w-8"
+        className="w-8 h-8 justify-center items-center"
         onClick={onAddButtonClick}
         type="button"
       >
-        <Plus />
+        <Icon icon={<Plus />} size={8} />
       </Clickable>
     </header>
   );

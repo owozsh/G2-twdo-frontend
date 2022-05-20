@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 
-import Clickable from "../ui/Clickable";
-import Icon from "../ui/Icon";
+import Clickable from "../common/Clickable";
+import Icon from "../common/Icon";
 
 export default function SidebarButton({
   label,
@@ -16,7 +16,7 @@ export default function SidebarButton({
   return (
     <Link to={`${route}`}>
       <Clickable className="w-full mb-1">
-        <Icon icon={icon} size={4} />
+        <Icon icon={icon} size={4} className={"mr-2"} />
         <p className="font-bold">{label.toLowerCase()}</p>
       </Clickable>
     </Link>

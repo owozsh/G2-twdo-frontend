@@ -4,7 +4,7 @@ import SidebarButton from "./SidebarButton";
 
 export default function Sidebar() {
   return (
-    <nav className="flex flex-col items-end h-full w-full">
+    <nav className="flex flex-col items-end h-full w-full max-w-sidebar row-start-2 col-start-1 justify-self-end">
       <ul className="w-full">
         <li>
           <SidebarButton

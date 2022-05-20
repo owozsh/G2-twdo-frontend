@@ -3,12 +3,14 @@ import { ReactElement } from "react";
 export default function Icon({
   icon,
   size,
+  className,
 }: {
   icon: ReactElement<any> | string;
   size: number;
+  className?: string;
 }) {
   return (
-    <span className={`flex items-center mr-3 child-icon:w-${size}`}>
+    <span className={`flex items-center child-icon:w-${size} ${className}`}>
       {icon}
     </span>
   );

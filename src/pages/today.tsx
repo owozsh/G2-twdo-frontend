@@ -11,6 +11,16 @@ const exampleTasks: task[] = [
     description: "task",
     completed: false,
   },
+  {
+    id: "2",
+    description: "task2",
+    completed: false,
+  },
+  {
+    id: "3",
+    description: "task2",
+    completed: false,
+  },
 ];
 
 export default function Today() {

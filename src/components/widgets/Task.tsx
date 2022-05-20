@@ -1,8 +1,13 @@
 import { useState, useRef, useEffect } from "react";
+import { Draggable } from "react-beautiful-dnd";
 import { Check } from "react-feather";
-import Clickable from "../ui/Clickable";
+import Clickable from "../common/Clickable";
 
-export default function Task(props: { description: string }) {
+export default function Task(props: {
+  description: string;
+  id: string;
+  index: number;
+}) {
   const [isComplete, setIsComplete] = useState(false);
   const [description, setDescription] = useState(props.description);
   const [editMode, setEditMode] = useState(false);
@@ -31,33 +36,40 @@ export default function Task(props: { description: string }) {
   }, [editMode]);
 
   return (
-    <li>
-      <Clickable
-        className={`task-container ${editMode && "edit-mode"}`}
-        hoverDisabled={editMode}
-        onClick={() => setEditMode(true)}
-      >
-        <div
-          className={`checkbox ${editMode && "edit-mode"} ${
-            isComplete && "checked"
-          }`}
-          onClick={(e) => toggleIsComplete(e)}
+    <Draggable draggableId={props.id} index={props.index}>
+      {(provided) => (
+        <li
+          className="hover:cursor-default"
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
         >
-          <Check />
-        </div>
-        <input
-          disabled={!editMode}
-          value={description}
-          ref={inputElement}
-          onFocus={(e) =>
-            e.currentTarget.setSelectionRange(
-              e.currentTarget.value.length,
-              e.currentTarget.value.length
-            )
-          }
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        {/* <ActionMenu editMode={editMode}>
+          <Clickable
+            className={`task-container ${editMode && "edit-mode"}`}
+            hoverDisabled={editMode}
+            onClick={() => setEditMode(true)}
+          >
+            <div
+              className={`checkbox ${editMode && "edit-mode"} ${
+                isComplete && "checked"
+              }`}
+              onClick={(e) => toggleIsComplete(e)}
+            >
+              <Check />
+            </div>
+            <input
+              disabled={!editMode}
+              value={description}
+              ref={inputElement}
+              onFocus={(e) =>
+                e.currentTarget.setSelectionRange(
+                  e.currentTarget.value.length,
+                  e.currentTarget.value.length
+                )
+              }
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            {/* <ActionMenu editMode={editMode}>
           <Button buttonType="default">
             <Calendar />
           </Button>
@@ -65,16 +77,18 @@ export default function Task(props: { description: string }) {
             <Trash2 />
           </Button>
         </ActionMenu> */}
-      </Clickable>
-      {editMode ? (
-        <div
-          className="absolute z-10 top-0 left-0 h-screen w-screen"
-          onClick={() => setEditMode(false)}
-        />
-      ) : (
-        ""
+          </Clickable>
+          {editMode ? (
+            <div
+              className="absolute z-10 top-0 left-0 h-screen w-screen"
+              onClick={() => setEditMode(false)}
+            />
+          ) : (
+            ""
+          )}
+        </li>
       )}
-    </li>
+    </Draggable>
   );
 }
 
