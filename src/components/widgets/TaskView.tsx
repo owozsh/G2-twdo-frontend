@@ -1,10 +1,13 @@
-import { useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { useSelector } from "react-redux";
+import { tasksState } from "../../reducers/tasksReducer";
 import { task } from "../../types";
 import Task from "./Task";
 
-export default function TaskView(props: { tasks: task[] }) {
-  const [tasks, setTasks] = useState(props.tasks);
+export default function TaskView() {
+  const tasks = useSelector<tasksState, tasksState["tasks"]>(
+    (state) => state.tasks
+  );
 
   const reorder = (list: task[], startIndex: number, endIndex: number) => {
     const result = [...list];
@@ -25,18 +28,7 @@ export default function TaskView(props: { tasks: task[] }) {
       result.destination.index
     );
 
-    setTasks([...reorderedTasks]);
-  };
-
-  const addTask = (): void => {
-    setTasks([
-      ...tasks,
-      {
-        id: new Date().getTime().toString(),
-        description: "",
-        completed: false,
-      },
-    ]);
+    // setTasks([...reorderedTasks]);
   };
 
   return (
