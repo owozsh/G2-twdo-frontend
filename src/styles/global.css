@@ -12,6 +12,8 @@
   @apply dark:text-slate-200;
   font-family: "Nunito", sans-serif;
   list-style: none;
+  outline: none;
+  border: none;
 }
 
 body {
@@ -21,73 +23,4 @@ body {
 
 #root {
   @apply h-full;
-}
-
-.task-container.edit-mode {
-  @apply flex-col h-16 z-20 border border-solid border-slate-300/50 items-stretch shadow-lg shadow-slate-200 px-3 py-2;
-  @apply dark:border-slate-400/10 dark:shadow-slate-800/10 dark:bg-slate-800/20;
-
-  transform: none;
-}
-
-.task-container input {
-  font-size: 1rem;
-  width: 100%;
-  border: none;
-  background-color: transparent;
-
-  cursor: default;
-}
-
-.task-container.edit-mode input {
-  cursor: text;
-}
-
-.task-container input:focus {
-  outline: none;
-  border: none;
-}
-
-.checkbox {
-  @apply w-3 h-3 flex relative items-center justify-center rounded-[0.25rem] border mr-2;
-  @apply border-slate-400;
-  @apply dark:border-slate-600;
-
-  transition: transform var(--transition-props-fast),
-    opacity var(--transition-props-fast);
-}
-
-.checkbox::before {
-  display: block;
-
-  content: "";
-  display: block;
-  border: 0.7rem solid transparent;
-  transform: translate(-0.3rem, -0.3rem);
-}
-
-.checkbox.edit-mode {
-  @apply hidden;
-}
-
-.checkbox svg {
-  @apply min-w-[1rem] hidden w-full h-full;
-  stroke-width: 4px;
-  transform: translateX(-65%);
-}
-
-.checkbox.checked {
-  @apply dark:bg-pink-400 dark:border-pink-400 bg-blue-400 border-blue-400;
-}
-
-.checkbox.checked svg {
-  @apply block dark:stroke-slate-900 stroke-slate-100;
-}
-
-input {
-  z-index: -10;
-}
-
-#data-rbd-drag-handle-context-id {
-  cursor: default;
 }

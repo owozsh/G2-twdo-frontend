@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { Check } from "react-feather";
+
 import Clickable from "../common/Clickable";
+import Checkbox from "../common/Checkbox";
 
 export default function Task(props: {
   description: string;
@@ -17,6 +18,15 @@ export default function Task(props: {
   const toggleIsComplete = (e: any) => {
     e.stopPropagation();
     setIsComplete(!isComplete);
+  };
+
+  const startFocusAtTheEndOfTheLine = (
+    e: React.FocusEvent<HTMLInputElement, Element>
+  ) => {
+    e.currentTarget.setSelectionRange(
+      e.currentTarget.value.length,
+      e.currentTarget.value.length
+    );
   };
 
   useEffect(() => {
@@ -45,28 +55,29 @@ export default function Task(props: {
           {...provided.dragHandleProps}
         >
           <Clickable
-            className={`task-container ${editMode && "edit-mode"}`}
+            className={`
+              ${
+                editMode &&
+                "relative flex-col h-16 z-20 border border-solid border-slate-300/50 items-stretch shadow-lg shadow-slate-200 px-3 py-2 dark:border-slate-400/10 dark:shadow-slate-800/10 dark:bg-slate-800/20"
+              }
+            `}
             hoverDisabled={editMode}
             onClick={() => setEditMode(true)}
           >
-            <div
-              className={`checkbox ${editMode && "edit-mode"} ${
-                isComplete && "checked"
-              }`}
+            <Checkbox
+              hidden={editMode}
+              checked={isComplete}
               onClick={(e) => toggleIsComplete(e)}
-            >
-              <Check />
-            </div>
+            />
             <input
               disabled={!editMode}
               value={description}
               ref={inputElement}
-              onFocus={(e) =>
-                e.currentTarget.setSelectionRange(
-                  e.currentTarget.value.length,
-                  e.currentTarget.value.length
-                )
-              }
+              className={`
+                w-full bg-transparent z-[-10]
+                cursor-${editMode ? "text" : "default"}
+              `}
+              onFocus={(e) => startFocusAtTheEndOfTheLine(e)}
               onChange={(e) => setDescription(e.target.value)}
             />
             {/* <ActionMenu editMode={editMode}>
@@ -96,29 +107,6 @@ export default function Task(props: {
 //   ${(props: { editMode: boolean }) =>
 //     props.editMode ? "display: flex;" : "display: none;"}
 //   justify-content: flex-end;
-// `;
-
-// const Checkbox = styled.div`
-//   margin-right: 0.5rem;
-
-//   transition: transform 0.1s cubic-bezier(0.165, 0.84, 0.44, 1),
-//     opacity 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-//   &:before {
-//     content: "";
-
-//     display: block;
-//     transform: translate(-0.3rem, -0.3rem);
-//     border: 0.7rem solid transparent;
-//   }
-
-//   svg {
-//     ${(props: { isComplete: boolean; editMode: boolean }) =>
-//       props.isComplete ? "" : "display: hidden"}
-//     min-width: 1rem;
-//     stroke-width: 2px;
-//     transform: translate(-0.55rem, -0.05rem);
-//   }
 // `;
 
 // const Button = styled.button`

@@ -1,4 +1,4 @@
-import { Plus } from "react-feather";
+import { FiPlus } from "react-icons/fi";
 import Clickable from "../common/Clickable";
 import Icon from "../common/Icon";
 
@@ -17,7 +17,7 @@ export default function HeaderBar({
         onClick={onAddButtonClick}
         type="button"
       >
-        <Icon icon={<Plus />} size={8} />
+        <Icon icon={<FiPlus size="1.25rem" strokeWidth="3px" />} />
       </Clickable>
     </header>
   );

@@ -1,4 +1,4 @@
-import { Sun, Calendar, Package } from "react-feather";
+import { FiSun, FiCalendar, FiPackage } from "react-icons/fi";
 
 import SidebarButton from "./SidebarButton";
 
@@ -9,21 +9,21 @@ export default function Sidebar() {
         <li>
           <SidebarButton
             label="today"
-            icon={<Sun />}
+            icon={<FiSun />}
             route="/today"
           ></SidebarButton>
         </li>
         <li>
           <SidebarButton
             label="upcoming"
-            icon={<Calendar />}
+            icon={<FiCalendar />}
             route="/upcoming"
           ></SidebarButton>
         </li>
         <li>
           <SidebarButton
             label="someday"
-            icon={<Package />}
+            icon={<FiPackage />}
             route="/someday"
           ></SidebarButton>
         </li>

@@ -1,17 +1,12 @@
 import { ReactElement } from "react";
+import { IconType } from "react-icons";
 
 export default function Icon({
   icon,
-  size,
   className,
 }: {
-  icon: ReactElement<any> | string;
-  size: number;
+  icon: ReactElement<IconType> | string;
   className?: string;
 }) {
-  return (
-    <span className={`flex items-center child-icon:w-${size} ${className}`}>
-      {icon}
-    </span>
-  );
+  return <span className={`flex items-center ${className}`}>{icon}</span>;
 }
