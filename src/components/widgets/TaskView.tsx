@@ -28,7 +28,7 @@ export default function TaskView() {
       result.destination.index
     );
 
-    // setTasks([...reorderedTasks]);
+    console.log(tasks);
   };
 
   return (

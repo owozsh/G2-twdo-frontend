@@ -21,7 +21,10 @@ const initialState = {
   ],
 };
 
-type Action = { type: "ADD_TASK"; payload: task };
+type Action = {
+  type: "ADD_TASK" | "REMOVE_TASK" | "UPDATE_TASKS";
+  payload: task;
+};
 
 export const tasksReducer = (
   state: tasksState = initialState,
@@ -30,6 +33,12 @@ export const tasksReducer = (
   switch (action.type) {
     case "ADD_TASK":
       return { ...state, tasks: [...state.tasks, action.payload] };
+    case "REMOVE_TASK":
+      console.log(state);
+      return {
+        ...state,
+        tasks: [...state.tasks].filter((t) => t.id !== action.payload.id),
+      };
     default:
       return state;
   }

@@ -1,5 +1,9 @@
 import { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { FiCalendar, FiTrash2 } from "react-icons/fi";
 import { Draggable } from "react-beautiful-dnd";
+import styled from "styled-components";
 
 import Clickable from "../common/Clickable";
 import Checkbox from "../common/Checkbox";
@@ -12,6 +16,18 @@ export default function Task(props: {
   const [isComplete, setIsComplete] = useState(false);
   const [description, setDescription] = useState(props.description);
   const [editMode, setEditMode] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const removeTask = () => {
+    dispatch({
+      type: "REMOVE_TASK",
+      payload: {
+        id: props.id,
+        description: props.description,
+      },
+    });
+  };
 
   const inputElement = useRef<HTMLInputElement>(null);
 
@@ -80,14 +96,14 @@ export default function Task(props: {
               onFocus={(e) => startFocusAtTheEndOfTheLine(e)}
               onChange={(e) => setDescription(e.target.value)}
             />
-            {/* <ActionMenu editMode={editMode}>
-          <Button buttonType="default">
-            <Calendar />
-          </Button>
-          <Button buttonType="destructive">
-            <Trash2 />
-          </Button>
-        </ActionMenu> */}
+            <ActionMenu editMode={editMode}>
+              <Button buttonType="default">
+                <FiCalendar />
+              </Button>
+              <Button buttonType="destructive" onClick={removeTask}>
+                <FiTrash2 />
+              </Button>
+            </ActionMenu>
           </Clickable>
           {editMode ? (
             <div
@@ -103,48 +119,48 @@ export default function Task(props: {
   );
 }
 
-// const ActionMenu = styled.div`
-//   ${(props: { editMode: boolean }) =>
-//     props.editMode ? "display: flex;" : "display: none;"}
-//   justify-content: flex-end;
-// `;
+const ActionMenu = styled.div`
+  ${(props: { editMode: boolean }) =>
+    props.editMode ? "display: flex;" : "display: none;"}
+  justify-content: flex-end;
+`;
 
-// const Button = styled.button`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
+const Button = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-//   height: 1.4rem;
-//   width: 1.4rem;
-//   margin-left: 0.2rem;
+  height: 1.4rem;
+  width: 1.4rem;
+  margin-left: 0.2rem;
 
-//   border: none;
-//   border-radius: 0.2rem;
-//   background-color: transparent;
+  border: none;
+  border-radius: 0.2rem;
+  background-color: transparent;
 
-//   outline: transparent;
+  outline: transparent;
 
-//   transition: background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
-//     outline 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+    outline 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-//   &:hover {
-//     background-color: ${(props: { buttonType: string }) =>
-//       props.buttonType == "destructive" ? "#ff000015" : "#0000ff15"};
+  &:hover {
+    background-color: ${(props: { buttonType: string }) =>
+      props.buttonType === "destructive" ? "#ff000015" : "#0000ff15"};
 
-//     outline: 1px solid
-//       ${(props: { buttonType: string }) =>
-//         props.buttonType == "destructive" ? "#ff000030" : "#0000ff30"};
+    outline: 1px solid
+      ${(props: { buttonType: string }) =>
+        props.buttonType === "destructive" ? "#ff000030" : "#0000ff30"};
 
-//     svg {
-//       color: ${(props: { buttonType: string }) =>
-//         props.buttonType == "destructive" ? "red" : "blue"};
-//     }
-//   }
+    svg {
+      color: ${(props: { buttonType: string }) =>
+        props.buttonType === "destructive" ? "red" : "blue"};
+    }
+  }
 
-//   svg {
-//     color: #888;
-//     width: 1rem;
-//     stroke-width: 1.5px;
-//     transition: color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-//   }
-// `;
+  svg {
+    color: #888;
+    width: 1rem;
+    stroke-width: 1.5px;
+    transition: color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+`;

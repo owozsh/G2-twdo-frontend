@@ -7,12 +7,11 @@ import Icon from "../common/Icon";
 export default function HeaderBar({ title }: { title: string }) {
   const dispatch = useDispatch();
 
-  const emptyTask: task = {
-    id: Date.now().toString(),
-    description: "",
-  };
-
   const addTask = () => {
+    const emptyTask: task = {
+      id: Math.floor(Math.random() * 100).toString(),
+      description: "",
+    };
     dispatch({ type: "ADD_TASK", payload: emptyTask });
   };
 
