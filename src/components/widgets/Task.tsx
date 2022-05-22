@@ -61,6 +61,12 @@ export default function Task(props: {
     }
   }, [editMode]);
 
+  useEffect(() => {
+    if (isComplete) {
+      setTimeout(removeTask, 3000);
+    }
+  }, [isComplete]);
+
   return (
     <Draggable draggableId={props.id} index={props.index}>
       {(provided) => (
