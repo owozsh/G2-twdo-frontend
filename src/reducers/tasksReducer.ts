@@ -22,7 +22,7 @@ const initialState = {
 };
 
 type Action = {
-  type: "ADD_TASK" | "REMOVE_TASK" | "UPDATE_TASKS";
+  type: "ADD_TASK" | "REMOVE_TASK";
   payload: task;
 };
 
